@@ -385,16 +385,16 @@
 							<div class="form-row">
 								<div class="col-md-3">
 									<label for="inputPassword4">Lebar</label>
-									<input type="text" v-model="lebar" class="form-control">
+									<input type="text" @change="cariLuas()"  v-model="lebar" class="form-control">
 								</div>
 								<div class="col-md-3">
 										<label for="inputEmail4">Panjang</label>
-										<input type="text" v-model="panjang" class="form-control">
+										<input type="text" @change="cariLuas()" v-model="panjang" class="form-control">
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-6">
-										<label>	HaRGA sTANDART</label>
+										<label>	Harga Standart</label>
 									<input type="" name="biaya" class="form-control" v-model="hargastandart">
 								</div>
 								<div class="form-group col-md-6">
@@ -417,8 +417,8 @@
 							</div>
 							<div class="row">
 								<div class="form-group col-md-6">
-									<label for="inputCity">Jumlah 	Pesanan</label>
-									<input type="text" @change="totalBiaya()"  v-model="jumlah" name="jumlah" class="form-control">
+									<label for="inputCity">Jumlah Pesanan</label>
+									<input type="text" @change="cariLuas();totalBiaya()" v-model="jumlah" name="jumlah" class="form-control">
 								</div>
 								<div class="form-group col-md-6">
 									<label for="inputState">Total</label>
@@ -671,36 +671,34 @@
 				el: '#app',
 				data(){
 					return {
-						panjang: '',
-						lebar: '',
+						panjang: 0,
+						lebar: 0,
 						barang:'',
 						bahan: '',
 						pemesan:'',
 						finishing:'',
-						jumlah:'',
+						jumlah:0,
 						totalHarga : '',
 						tanggal_pesan:'2019/11/11',
 						hargastandart:'',
 						hrg: '',
+						luass: '',
 						um: 0,
 						sisa:''
-
-
 						// luas: ''
 					}
 				},
 					computed:{
-						luas: function (){
-							return (this.panjang * this.lebar) /10000
-						},
-						harga() {
-							return this.hrg = (this.luas * parseInt(this.hargastandart))
-							// .toFixed(2)
-						},
+
+						// harga() {
+						// 	return this.hrg = (this.luass * parseInt(this.hargastandart))
+						// 	// .toFixed(2)
+						// },
 						sisaTotal(){
 							return (parseInt(this.totalHarga) - parseInt(this.um))
 						}
 					},
+
 					methods:{
 							totalBiaya(){
 							let biaya = 0
@@ -725,8 +723,21 @@
 						}else {
 							this.hargastandart = 17500
 						}
+					},
+					cariLuas(){
+						if (this.panjang != null && this.lebar != null) {
+									this.luass = (parseInt(this.panjang) * parseInt(this.lebar)) / 10000
+									console.log(this.luas);
+
+									this.hrg = (this.luass * parseInt(this.hargastandart))
+									console.log(this.hrg);
+									// totalBiaya()
+						}else{
+							alert('Inputan Tidak Boleh Kosong')
+						}
 					}
 				}
+
 			})
 
 		</script>
