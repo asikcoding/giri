@@ -357,7 +357,7 @@
 						Pemesanan
 					</div>
 					<div class="card-body">
-						<form action="simpanpinjam.php" method="POST" enctype="multitipart-data">
+						<form action="simpanpinjam.php" method="POST" enctype="multipart/form-data">
 							<div class="form-row">
 								<div class="form-group col-md-3">
 									<label for="inputEmail4">nama Pemesan</label>
@@ -427,12 +427,14 @@
 							</div>
 							<div class="row">
 								<div class="form-group col-md-6">
-									<label for="inputZip">Tanggal</label>
+									<label for="inputZip">Tanggal Pemesana</label>
 									<!-- <input type="text" name="tanggal" class="form-control"> -->
 									<input type="text"
 									       class="datepicker-here form-control"
 									       data-language='en'
+												 name="tanggal_pesan"
 												 v-model="tanggal_pesan"
+												 data-date-format="yyyy/mm/dd "
 									       data-multiple-dates="3"
 									       data-multiple-dates-separator=", "
 									       data-position='top left'/>
@@ -448,12 +450,13 @@
 									<input type="text"  :value="sisaTotal"  name="tanggungan" name="sisa" class="form-control">
 								</div>
 								<div class="form-group col-md-6">
-									<input type="file" name="gambar">
+									<label for="inputZip">Masukkan Desain</label>
+									<input class="btn" type="file" name="gambar">
 								</div>
 								<!-- <span>{{totalHarga}}</span> -->
 							</div>
 							<div>
-								<button type="submit" class="btn btn-primary">Simpan</button>
+								<button type="submit" name="submit"  class="btn btn-primary">Simpan</button>
 							</div>
 							<div>
 								<button type="submit" class="btn btn-primary">Cetak</button>
@@ -676,7 +679,7 @@
 						finishing:'',
 						jumlah:'',
 						totalHarga : '',
-						tanggal_pesan:'',
+						tanggal_pesan:'2019/11/11',
 						hargastandart:'',
 						hrg: '',
 						um: 0,
